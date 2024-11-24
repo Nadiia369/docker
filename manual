@@ -1,0 +1,2 @@
+docker run -it --name rzh_py rzhevska_py
+docker build . -t rzhevska_py

@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  db:
+    image: ubuntu/postgres:latest
+    container_name: rzh_sql
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - "5432:5432"
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.0.3
+    volumes:
+      - C:\Users\1\sql:\home
+  py:
+    image: rzhevska_py
+    container_name: rzh_py3
+    ports:
+      - "80:80"
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.0.5
+    volumes:
+      - C:\Users\1\py:\home
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 192.168.0.0/24
+         gateway: 192.168.0.1
